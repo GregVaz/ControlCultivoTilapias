@@ -5,7 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    
+    apiKey: "AIzaSyD9MdDZpPQzJVhHhRP0EQOG7q2TyPQpfx0",
+    authDomain: "controlcultivotilapias.firebaseapp.com",
+    databaseURL: "https://controlcultivotilapias.firebaseio.com",
+    projectId: "controlcultivotilapias",
+    storageBucket: "controlcultivotilapias.appspot.com",
+    messagingSenderId: "399930460872",
+    appId: "1:399930460872:web:4f29a3a4fd932146cc73fd",
+    measurementId: "G-NGZCW9X9PV"
   }
 };
 
