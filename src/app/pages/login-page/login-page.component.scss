@@ -1,0 +1,134 @@
+
+.title-login h2 {
+    font-family: 'Roboto', "Lucida Console", monospace;
+}
+
+#formulario {
+    background-image: url('../../../assets/background_login.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form-login {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.access {
+    color: white;
+    font-family: 'Montserrat', "Lucida Console", monospace;
+    background: rgba(108, 99, 255, 0.9);
+}
+
+form {
+    min-width: 300px;
+}
+
+.mat-card {
+    max-width: 350px;
+    opacity: 0.9;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    overflow: hidden;
+    background: rgba(218, 217, 216, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mat-progress-spinner {
+    z-index: 9999;
+    overflow: auto;
+  }
+
+  // Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    .form-login {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    form {
+        min-width: 350px;
+    }
+
+    .mat-card {
+        max-width: 400px;
+        opacity: 0.9;
+    }
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .form-login {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    form {
+        min-width: 350px;
+    }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    #formulario {
+        background-image: url('../../../assets/background_login.svg');
+        background-repeat: no-repeat;
+        background-size: unset;
+    }
+
+    .form-login {
+        position: absolute;
+        bottom: 50px;
+        right: 50px;
+    }
+
+    form {
+        min-width: 350px;
+    }
+
+    .mat-card {
+        max-width: 400px;
+        opacity: 0.9;
+    }
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    #formulario {
+        background-image: url('../../../assets/background_login.svg');
+        background-repeat: no-repeat;
+        background-size: unset;
+    }
+
+    .form-login {
+        position: absolute;
+        bottom: 60px;
+        right: 60px;
+    }
+
+    form {
+        min-width: 500px;
+    }
+
+    .mat-card {
+        max-width: 550px;
+        opacity: 0.9;
+    }
+ }

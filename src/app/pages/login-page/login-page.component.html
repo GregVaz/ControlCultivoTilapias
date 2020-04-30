@@ -1,1 +1,37 @@
-<p>login-page works!</p>
+<div class="container-fuild" id="formulario" style="height: 100vh;">
+    <div class="title-login text-center">
+        <h2>Control de cultivo de tilapias</h2>
+    </div>
+    <div class="form-login">
+        <mat-card>
+            <form [formGroup]="formLogin" action="">
+                <div class="form-group">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Correo electronico de usuario</mat-label>
+                        <input matInput autofocus formControlName="email" autocomplete="off" required [email]="true" style="text-transform: lowercase">
+                        <mat-error *ngIf="this.formLogin.get('email').invalid">{{getEmailErrorMessage()}}</mat-error>
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="outline">
+                        <mat-label>Ingrese su contraseña</mat-label>
+                        <input matInput formControlName="password" (keyup.enter)="login()" [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-error *ngIf="this.formLogin.get('password').invalid">{{getPasswordErrorMessage()}}</mat-error>
+                    </mat-form-field>
+        
+                </div>
+        
+                <div *ngIf="showAlertDiv" style="margin-top: 8px; text-align: center" (keyup.enter)="login()" class="alert alert-danger" role="alert">
+                    {{messageAlertDiv}}
+                </div>
+        
+                <button mat-raised-button class="access btn-block" type="submit" (click)="login()">
+                    Ingresar
+                </button>
+            </form>        
+        </mat-card>
+        <div *ngIf="preloader" class="preloader">
+            <mat-progress-spinner color="accent" mode="indeterminate"></mat-progress-spinner>
+          </div>
+    </div>
+  </div>
