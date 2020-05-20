@@ -1,21 +1,26 @@
 <mat-toolbar color="primary">
     <div class="col-4"  routerLinkActive="active">
         <a mat-flat-button routerLink="/estadisticas" class="btn-block">
-            <mat-icon>insert_chart</mat-icon>    
+            <mat-icon>insert_chart</mat-icon>
             Estadisticas
         </a>
     </div>
     <div class="col-4">
         <a mat-flat-button routerLink="/principal" routerLinkActive="active" class="btn-block">
-            <mat-icon>home</mat-icon>   
+            <mat-icon>home</mat-icon>
             Pagina principal
         </a>
     </div>
     <div class="col-4">
         <button mat-flat-button class="btn-block" (click)="this.fbService.logout()">
-            <mat-icon>exit_to_app</mat-icon>   
+            <mat-icon>exit_to_app</mat-icon>
             Salir
         </button>
     </div>
 </mat-toolbar>
-<p>statistics-page works!</p>
+<div style="text-align: center;" class="mt-3">
+<canvas id="chartPastel" ></canvas>
+<br>
+<br>
+</div>
+
