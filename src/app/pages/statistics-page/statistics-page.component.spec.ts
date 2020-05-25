@@ -7,9 +7,8 @@ describe('StatisticsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StatisticsPageComponent ]
-    })
-    .compileComponents();
+      declarations: [StatisticsPageComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

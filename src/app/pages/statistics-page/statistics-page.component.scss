@@ -1,15 +1,30 @@
 .active a.mat-flat-button {
-    // background-color: #f8f2b7;
-    font-weight: bold;
+  // background-color: #f8f2b7;
+  font-weight: bold;
 }
-  
-.active a.mat-flat-button mat-icon, .active a.mat-flat-button {
-    color: gray !important;
+
+.active a.mat-flat-button mat-icon,
+.active a.mat-flat-button {
+  color: gray !important;
 }
 
 a:hover {
-    background-color: lightyellow;
-    // color:rgba(108, 99, 255, 0.9);
-    text-decoration: unset;
-    font-weight: bold;
+  background-color: lightyellow;
+  // color:rgba(108, 99, 255, 0.9);
+  text-decoration: unset;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
 }

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Material
-import {MaterialModule} from './material.components';
+import { MaterialModule } from './material.components';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -20,13 +20,16 @@ import { StatisticsPageComponent } from './pages/statistics-page/statistics-page
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
+//EXPORT EXCEL
+import { ExporterService } from './services/exporter.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     StatisticsPageComponent,
     MainPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +40,9 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     MaterialModule,
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ExporterService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
