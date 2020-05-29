@@ -10,7 +10,7 @@ export class FirebaseService {
   public uid;
   public msgError: string;
 
-  constructor() { 
+  constructor() {
     this.app = firebase.initializeApp(environment.firebaseConfig);
   }
 

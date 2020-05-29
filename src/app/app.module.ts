@@ -15,13 +15,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Pages
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { StatisticsPageComponent } from './pages/statistics-page/statistics-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
-//EXPORT EXCEL
+// EXPORT EXCEL
 import { ExporterService } from './services/exporter.service';
+import { CreateFishModalComponent } from './components/create-fish-modal/create-fish-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { ExporterService } from './services/exporter.service';
     StatisticsPageComponent,
     MainPageComponent,
     PageNotFoundComponent,
+    HomePageComponent,
+    CreateFishModalComponent,
   ],
   imports: [
     BrowserModule,

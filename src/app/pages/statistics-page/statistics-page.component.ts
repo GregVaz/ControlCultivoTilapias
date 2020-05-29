@@ -79,7 +79,7 @@ export class StatisticsPageComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    //CREACION DE LA GRAFICA
+    // CREACION DE LA GRAFICA
     this.graficoPastel = new Chart('chartPastel', {
       type: 'pie',
       data: {
@@ -113,7 +113,7 @@ export class StatisticsPageComponent implements OnInit {
         },
       },
     });
-    //TERMINA LA GRAFICA
+    // TERMINA LA GRAFICA
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -143,7 +143,7 @@ function createNewUser(id: number): UserData {
 
   return {
     id: id.toString(),
-    name: name,
+    name,
     progress: Math.round(Math.random() * 100).toString(),
     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))],
   };

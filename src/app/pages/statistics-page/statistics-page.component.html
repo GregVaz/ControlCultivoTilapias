@@ -19,63 +19,88 @@
   </div>
 </mat-toolbar>
 
-<!--TABLA -->
-<div class="container mt-4">
-  <mat-form-field class="block">
-    <mat-label>Filtro <mat-icon>search</mat-icon></mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." />
-  </mat-form-field>
-
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
-      </ng-container>
-
-      <!-- Progress Column -->
-      <ng-container matColumnDef="progress">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
-        <td mat-cell *matCellDef="let row">{{ row.progress }}%</td>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-      </ng-container>
-
-      <!-- Color Column -->
-      <ng-container matColumnDef="color">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
-        <td mat-cell *matCellDef="let row" [style.color]="row.color">
-          {{ row.color }}
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<section id="pond-select" class="mt-5 mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 mx-auto">
+        <h1 class="text-center">Selecciona un estanque para ver sus estadisticas</h1>
+      </div>
+    </div>
   </div>
-  <div class="mt-3 row align-items-center justify-content-center">
-    <button class="btn btn-success m-1 col-2" (click)="exportarExcel()">
-      <mat-icon>description</mat-icon>
-      Exportar Excel
-    </button>
-    <button class="btn btn-success m-1 col-2" (click)="exportarExcelFiltrado()">
-      <mat-icon>find_in_page</mat-icon>
-      Exp Excel Filtrado
-    </button>
-  </div>
-</div>
-<!--TERMINA TABLA -->
+</section>
 
-<!--EMPIEZA GRAFICA -->
-<div style="text-align: center;" class="mt-4">
-  <canvas id="chartPastel"></canvas>
-  <br />
-  <br />
-</div>
-<!--TERMINA GRAFICA -->
+<section id="data-charts">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Concentrado de Peses en el estanque">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="block">
+              <mat-label>Filtro <mat-icon>search</mat-icon></mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." />
+            </mat-form-field>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort>
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                  <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="progress">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
+                  <td mat-cell *matCellDef="let row">{{ row.progress }}%</td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                  <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="color">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
+                  <td mat-cell *matCellDef="let row" [style.color]="row.color">
+                    {{ row.color }}
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="mt-3 row align-items-center justify-content-center">
+              <button class="btn btn-success m-1 col-2" (click)="exportarExcel()">
+                <mat-icon>description</mat-icon>
+                Exportar Excel
+              </button>
+              <button class="btn btn-success m-1 col-2" (click)="exportarExcelFiltrado()">
+                <mat-icon>find_in_page</mat-icon>
+                Exp Excel Filtrado
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Graficos de crecimiento">
+      <div class="container">
+        <div class="row">
+          <!--EMPIEZA GRAFICA -->
+          <div style="text-align: center;" class="mt-4">
+            <canvas id="chartPastel"></canvas>
+            <br />
+            <br />
+          </div>
+          <!--TERMINA GRAFICA -->
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</section>

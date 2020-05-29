@@ -1,21 +1,114 @@
 <mat-toolbar color="primary">
     <div class="col-4"  routerLinkActive="active">
         <a mat-flat-button routerLink="/estadisticas" class="btn-block">
-            <mat-icon>insert_chart</mat-icon>    
+            <mat-icon>insert_chart</mat-icon>
             Estadisticas
         </a>
     </div>
     <div class="col-4"  routerLinkActive="active">
         <a mat-flat-button routerLink="/principal" class="btn-block">
-            <mat-icon>home</mat-icon>   
+            <mat-icon>home</mat-icon>
             Pagina principal
         </a>
     </div>
     <div class="col-4">
         <button mat-flat-button class="btn-block" (click)="this.fbService.logout()">
-            <mat-icon>exit_to_app</mat-icon>   
+            <mat-icon>exit_to_app</mat-icon>
             Salir
         </button>
     </div>
 </mat-toolbar>
-<p>main-page works!</p>
+
+
+
+<section id="estanques">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Agregar nuevo estanque">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-9 mx-auto">
+            <mat-card class="card-estanques">
+              <mat-card-header><h1 class="text-info ">Añadir nuevo estanque</h1></mat-card-header>
+              <mat-card-content>
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Nombre del estanque</mat-label>
+                    <input matInput placeholder="Introduzca el nombre" value="">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Color del estanque</mat-label>
+                    <input matInput placeholder="Introduzca el color" value="">
+                  </mat-form-field>
+                </form>
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="card-estanques">
+              <mat-card-header><h1 class="text-info ">Añadir nuevo tipo de pez</h1></mat-card-header>
+              <mat-card-content>
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Nombre del pez</mat-label>
+                    <input matInput placeholder="Introduzca el nombre" value="">
+                  </mat-form-field>
+
+                </form>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Todos los estanques">
+      <div class="container">
+        <div class="row">
+          <div class=" col-sm-12 col-md-9  mx-auto">
+            <mat-form-field>
+              <mat-label>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+            </mat-form-field>
+
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="progress">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+                  <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="color">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+                  <td mat-cell *matCellDef="let row" >
+                    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="editDialog()"><mat-icon>edit</mat-icon>Agregar nuevo pez al estanque</button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+              </table>
+
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</section>
