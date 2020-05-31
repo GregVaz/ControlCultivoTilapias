@@ -31,6 +31,7 @@ const NAMES: string[] = [
 export class MainPageComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;
+  preloader = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -66,6 +67,14 @@ export class MainPageComponent implements OnInit {
       console.log('El cuadro de dialogo se ha cerrado');
       this.ngOnInit();
     });
+  }
+
+  logout() {
+    this.preloader = true;
+    setTimeout( () => {
+      this.preloader = false;
+      this.fbService.logout();
+    }, 2500);
   }
 
 } // export class

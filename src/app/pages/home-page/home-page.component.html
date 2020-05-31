@@ -1,8 +1,8 @@
-<mat-toolbar class="app-toolbar">
-  <span>Nombre app</span>
+<mat-toolbar class="app-toolbar" >
+  <span>Tilapp</span>
   <span class="example-spacer"></span>
-  <button mat-stroked-button color="primary">Registrarse</button>
-  <button mat-raised-button color="primary">Iniciar Sesión</button>
+  <!-- <button mat-stroked-button color="primary">Registrarse</button> -->
+  <button mat-raised-button color="primary" (click)="openDialog()">Iniciar Sesión</button>
 </mat-toolbar>
 
 <section id="inicio">
@@ -17,7 +17,7 @@
           </div>
           <div class="row mt-5">
             <div class="col-md-9 mx-auto">
-              <h2 class="text-white font-weight-bold text-center">Prueba "nombre de la app"</h2>
+              <h2 class="text-white font-weight-bold text-center">Prueba Tilapp</h2>
 
             </div>
           </div>
@@ -31,3 +31,7 @@
     </div>
   </div>
 </section>
+
+<div *ngIf="preloader" class="preloader">
+  <mat-progress-spinner color="accent" mode="indeterminate"></mat-progress-spinner>
+</div>

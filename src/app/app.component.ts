@@ -25,9 +25,9 @@ export class AppComponent {
     });
   }
 
-  changeStatus() {
-    this.activeSession = !this.activeSession;
-  }
+  // changeStatus() {
+  //   this.activeSession = !this.activeSession;
+  // }
 
   
 }

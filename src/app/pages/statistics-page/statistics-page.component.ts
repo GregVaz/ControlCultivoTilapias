@@ -60,6 +60,7 @@ const NAMES: string[] = [
 export class StatisticsPageComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;
+  preloader = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -73,6 +74,14 @@ export class StatisticsPageComponent implements OnInit {
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+  }
+
+  logout() {
+    this.preloader = true;
+    setTimeout( () => {
+      this.preloader = false;
+      this.fbService.logout();
+    }, 2500);
   }
 
   ngOnInit(): void {

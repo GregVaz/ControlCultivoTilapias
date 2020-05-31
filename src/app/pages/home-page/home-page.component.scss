@@ -5,6 +5,25 @@
   z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }
 
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: rgba(218, 217, 216, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-progress-spinner {
+  z-index: 9999;
+  overflow: auto;
+}
+
 h1{
   font-size: 2.5em;
 }

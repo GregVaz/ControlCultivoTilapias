@@ -1,12 +1,1 @@
-
-<div *ngIf="load">
-    <div *ngIf="!activeSession">
-      <app-login-page (loginSuccessful)="changeStatus()"></app-login-page>
-    </div>
-    <!--Si la variable es verdadera permitira el acceso a la pagina web, en comprobacion con el metodo checklogin-->
-    <div *ngIf="activeSession">
-        
-      <router-outlet></router-outlet>
-  
-    </div>
-  </div>
+<router-outlet></router-outlet>

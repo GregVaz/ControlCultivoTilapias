@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +11,18 @@ export class FirebaseService {
   public uid;
   public msgError: string;
 
-  constructor() {
+  constructor(private route: Router) {
     this.app = firebase.initializeApp(environment.firebaseConfig);
   }
 
   session() {
-    return new Promise( (resolve) => {
+    return new Promise<boolean>( (resolve) => {
       this.app.auth().onAuthStateChanged((user) => {
         if (user) {
           this.uid = user.uid;
           resolve(true);
         } else {
+          this.route.navigate(['/']);
           resolve(false);
         }
       });
@@ -46,7 +48,7 @@ export class FirebaseService {
         console.log('Se ha cerrado la sesion');
         localStorage.removeItem('session');
         localStorage.clear();
-        window.location.reload();
+        this.route.navigate(['/']);
         resolve();
       }).catch( err => {
         console.log(err);

@@ -16,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Pages
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { StatisticsPageComponent } from './pages/statistics-page/statistics-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -24,17 +23,18 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 // EXPORT EXCEL
 import { ExporterService } from './services/exporter.service';
 import { CreateFishModalComponent } from './components/create-fish-modal/create-fish-modal.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
     StatisticsPageComponent,
     MainPageComponent,
     PageNotFoundComponent,
     HomePageComponent,
     CreateFishModalComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
