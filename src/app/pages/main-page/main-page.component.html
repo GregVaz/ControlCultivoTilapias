@@ -28,19 +28,19 @@
         <div class="row">
           <div class="col-sm-12 col-md-9 mx-auto">
             <mat-card class="card-estanques">
-              <mat-card-header class="justify-content-center"><h1 class="text-info">Añadir nuevo estanque</h1></mat-card-header>
+              <mat-card-header class="justify-content-center"><h1 class="text-info">Añadir Nuevo Estanque</h1></mat-card-header>
               <mat-card-content>
                 <form [formGroup]="formEstanque">
                   <mat-form-field class="example-full-width">
-                    <mat-label style="font-size: large">Nombre del estanque</mat-label>
-                    <input matInput placeholder="Introduzca el nombre" formControlName="name" required>
+                    <mat-label style="font-size: large">Nombre Del Estanque</mat-label>
+                    <input matInput placeholder="Introduzca el nombre" formControlName="name" [disabled]="!formEstanque.valid" required>
                   </mat-form-field>
                   <button mat-raised-button color="primary" class="btn-block" style="font-size: medium" (click)="agregarEstanque()">Agregar estanque</button>
                 </form>
               </mat-card-content>
             </mat-card>
             <mat-card class="card-estanques">
-              <mat-card-header class="justify-content-center"><h1 class="text-info">Añadir nuevo pez</h1></mat-card-header>
+              <mat-card-header class="justify-content-center"><h1 class="text-info">Añadir Nuevo Pez</h1></mat-card-header>
               <mat-card-content>
                 <form [formGroup]="formPez">
                   <mat-form-field>

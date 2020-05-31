@@ -1,3 +1,4 @@
+import { Exporter2Service } from './services/exporter2.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -47,7 +48,7 @@ import { LoginComponent } from './components/login/login.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
   ],
-  providers: [ExporterService],
+  providers: [ExporterService,Exporter2Service],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
