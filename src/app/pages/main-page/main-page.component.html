@@ -28,84 +28,50 @@
         <div class="row">
           <div class="col-sm-12 col-md-9 mx-auto">
             <mat-card class="card-estanques">
-              <mat-card-header><h1 class="text-info ">Añadir nuevo estanque</h1></mat-card-header>
+              <mat-card-header class="justify-content-center"><h1 class="text-info">Añadir nuevo estanque</h1></mat-card-header>
               <mat-card-content>
-                <form class="example-form">
+                <form [formGroup]="formEstanque">
                   <mat-form-field class="example-full-width">
-                    <mat-label>Nombre del estanque</mat-label>
-                    <input matInput placeholder="Introduzca el nombre" value="">
+                    <mat-label style="font-size: large">Nombre del estanque</mat-label>
+                    <input matInput placeholder="Introduzca el nombre" formControlName="name" required>
                   </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Color del estanque</mat-label>
-                    <input matInput placeholder="Introduzca el color" value="">
-                  </mat-form-field>
+                  <button mat-raised-button color="primary" class="btn-block" style="font-size: medium" (click)="agregarEstanque()">Agregar estanque</button>
                 </form>
               </mat-card-content>
             </mat-card>
             <mat-card class="card-estanques">
-              <mat-card-header><h1 class="text-info ">Añadir nuevo tipo de pez</h1></mat-card-header>
+              <mat-card-header class="justify-content-center"><h1 class="text-info">Añadir nuevo pez</h1></mat-card-header>
               <mat-card-content>
-                <form class="example-form">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Nombre del pez</mat-label>
-                    <input matInput placeholder="Introduzca el nombre" value="">
+                <form [formGroup]="formPez">
+                  <mat-form-field>
+                    <mat-label style="font-size: medium">Estanques</mat-label>
+                    <mat-select formControlName="estanque" required>
+                      <mat-option>Seleccione una opción</mat-option>
+                      <mat-option *ngFor="let estanque of estanques | async" [value]="estanque" style="font-size: medium">
+                        {{estanque.name}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
-
+                  <div class="row">
+                    <div class="col-6">
+                      <mat-form-field>
+                        <mat-label style='font-size: medium'>Longitud del pez</mat-label>
+                        <input matInput placeholder="Introduzca la longitud del pez en cm*" formControlName="longitud" min=0 type="number" style="font-size: medium" required>
+                        <span matSuffix>m</span>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field>
+                        <mat-label style='font-size: medium'>Peso del pez</mat-label>
+                        <input matInput placeholder="Introduzca el peso del pez en kg*" formControlName="peso" min=0 type="number" style="font-size: medium" required>
+                        <span matSuffix>Kg</span>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <button mat-raised-button class="btn-block" color="primary" type="submit" (click)="agregarPez()">Agregar pez</button>
                 </form>
               </mat-card-content>
             </mat-card>
-          </div>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="Todos los estanques">
-      <div class="container">
-        <div class="row">
-          <div class=" col-sm-12 col-md-9  mx-auto">
-            <mat-form-field>
-              <mat-label>Filter</mat-label>
-              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
-            </mat-form-field>
-
-            <div class="mat-elevation-z8">
-              <table mat-table [dataSource]="dataSource" matSort>
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-                </ng-container>
-
-                <!-- Progress Column -->
-                <ng-container matColumnDef="progress">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-                  <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                  <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-                </ng-container>
-
-                <!-- Color Column -->
-                <ng-container matColumnDef="color">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
-                  <td mat-cell *matCellDef="let row" >
-                    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-                    <mat-menu #menu="matMenu">
-                      <button mat-menu-item (click)="editDialog()"><mat-icon>edit</mat-icon>Agregar nuevo pez al estanque</button>
-                    </mat-menu>
-                  </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                </tr>
-              </table>
-
-              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-            </div>
           </div>
         </div>
       </div>

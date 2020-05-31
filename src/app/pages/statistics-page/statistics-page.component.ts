@@ -5,6 +5,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ExporterService } from 'src/app/services/exporter.service';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 export interface UserData {
   id: string;
@@ -52,28 +55,88 @@ const NAMES: string[] = [
   'Thomas',
   'Elizabeth',
 ];
+export interface Estadisticas { estanqueId: string; biomasa: number; fecha: string; }
+export interface Estanque { id?: string; name: string; peces?: Array<string>; pesoTotal?: number; }
+
+
 @Component({
   selector: 'app-statistics-page',
   templateUrl: './statistics-page.component.html',
   styleUrls: ['./statistics-page.component.scss'],
 })
 export class StatisticsPageComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['name', 'quantity', 'size', 'actions'];
+  dataSource: MatTableDataSource<Estanque>;
+
+  displayedColumns2: string[] = ['name', 'biomasa', 'date'];
+  dataSource2: MatTableDataSource<Estadisticas>;
+
+
   preloader = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   // Se declara los datos de pastel como arreglo
   graficoPastel = [];
+
+  // Firestore
+  private estadisticasCollection: AngularFirestoreCollection<Estadisticas>;
+  private estanqueCollection: AngularFirestoreCollection<Estanque>;
+  estanques: Observable<Estanque[]>;
+  public estanqueOption: Estanque;
+
   constructor(
     public fbService: FirebaseService,
+    private firestore: AngularFirestore,
     private excelService: ExporterService
   ) {
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    // this.dataSource = new MatTableDataSource(users);
+    // Firestore
+    this.estadisticasCollection = firestore.collection<Estadisticas>('Estadisticas');
+    this.estadisticasCollection.valueChanges().subscribe( response => {
+      // console.log(response);
+      this.dataSource2 = new MatTableDataSource(response);
+    });
+    this.estanqueCollection = firestore.collection<Estanque>('Estanque');
+    // this.estanqueCollection.valueChanges().subscribe( response => {
+    //   console.log(response);
+    //   this.dataSource = new MatTableDataSource(response);
+    // });
+    this.estanques = this.estanqueCollection.snapshotChanges().pipe(
+      map( values => values.map(a => {
+        const data = a.payload.doc.data() as Estanque;
+        const id = a.payload.doc.id;
+        this.dataSource = new MatTableDataSource([{ id, ...data }]);
+        return { id, ...data };
+        })
+      ));
+  }
+
+  calculo() {
+    const newData = {
+      estanqueId: this.estanqueOption.id,
+      name: this.estanqueOption.name,
+      biomasa: this.estanqueOption.pesoTotal * (this.estanqueOption.pesoTotal / this.estanqueOption.peces.length),
+      fecha: Date()
+    };
+    this.estadisticasCollection.add(newData).then( res => {
+      // console.log(res);
+      console.log('Se ha calculado la biomasa');
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  eliminar(id: any) {
+    // console.log(id);
+    this.estanqueCollection.doc(id).delete().then( res => {
+      console.log('Se ha eliminado correctamente el estanque');
+    }).catch(err => {
+      console.log('Se ha producido un error ' + err);
+    });
   }
 
   logout() {
